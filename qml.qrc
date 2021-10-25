@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>ui/assets/MyOlivin-Regular.ttf</file>
+        <file>ui/common/StylizedButton.qml</file>
+        <file>ui/HomeScreen.qml</file>
+        <file>ui/GameSelectScreen.qml</file>
+        <file>ui/PlaySeedInputScreen.qml</file>
+        <file>ui/assets/Highman.ttf</file>
+        <file>ui/GameScreen.qml</file>
+        <file>ui/ResultsScreen.qml</file>
+    </qresource>
+</RCC>
