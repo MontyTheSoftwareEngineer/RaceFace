@@ -228,4 +228,21 @@ Item {
         }
     }
 
+    StylizedButton {
+        id: mainMenuButton
+        anchors {
+            top: resumeButton.bottom
+            topMargin: 20
+            horizontalCenter: parent.horizontalCenter
+        }
+
+        visible: pauseScreen.visible
+        buttonText: "Main Menu"
+        width: parent.width / 3
+        height: parent.height / 8
+        onClicked: {
+            mainLoader.source = "HomeScreen.qml"
+        }
+    }
+
 }

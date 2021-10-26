@@ -126,7 +126,7 @@ void GameLogicController::initList()
         //mixed
         case 2: {
             newElement.first = threeDigit( generator );
-            newElement.second = threeDigit( generator );
+            newElement.second = twoDigit( generator );
             break;
         }
         case 3: {
