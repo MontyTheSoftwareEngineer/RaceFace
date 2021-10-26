@@ -8,6 +8,7 @@ GameLogicController::GameLogicController(QObject *parent)
     , m_seed( QString() )
     , m_problemDisplay( QString() )
     , m_currentProblemCount( 0 )
+    , m_problemType( 0 )
 {
 
 }
@@ -89,6 +90,11 @@ QString GameLogicController::getQuestionList()
     return ret;
 }
 
+void GameLogicController::setProblemType(const int &index)
+{
+    m_problemType = index;
+}
+
 void GameLogicController::initList()
 {
     m_gameProblemList.clear();
@@ -103,8 +109,12 @@ void GameLogicController::initList()
     for ( int i = 0; i < 7; i++ )
     {
         QPair< int, int > newElement;
-
-        int mode = typeSel( generator );
+        int mode = m_problemType;
+        if ( m_problemType == 0 )
+        {
+            mode = typeSel( generator );
+        }
+        //int mode = typeSel( generator );
         switch( mode )
         {
         //two digits
@@ -116,13 +126,14 @@ void GameLogicController::initList()
         //mixed
         case 2: {
             newElement.first = threeDigit( generator );
-            newElement.second = twoDigit( generator );
+            newElement.second = threeDigit( generator );
             break;
         }
-        default: {
+        case 3: {
             newElement.first = threeDigit( generator );
             newElement.second = twoDigit( generator );
             break;
+
         }
         }
 

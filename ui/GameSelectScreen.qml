@@ -1,7 +1,6 @@
 import QtQuick 2.0
 import "common"
-import QtQuick.Controls 2.2
-
+import QtQuick.Controls 2.5
 Item {
     anchors.fill: parent
 
@@ -9,6 +8,11 @@ Item {
         id: background
         color: "#707070"
         anchors.fill: parent
+    }
+
+    Component.onCompleted: {
+        //reset in case someone hits back on seed play
+        glc.setProblemType( 0 )
     }
 
     Text {
@@ -24,66 +28,39 @@ Item {
         text: qsTr("Select Mode")
     }
 
-    RadioButton {
-        id: leftToRight
+    ListModel {
+        id: problemTypes
+        ListElement { text: "Random" }
+        ListElement { text: "Two-Digit X Two Digit" }
+        ListElement { text: "Three-Digit X Three-Digit" }
+        ListElement { text: "Three Digit X Two Digit" }
+    }
+
+    Text {
+        id: problemTypeLabel
+        font.family: okpupfont.name
+        font.pixelSize: 16 * ( parent.height / 600 )
+        text: "Problem Type:"
         anchors {
-            bottom: playNow.top
+            left: problemModeComboBox.left
+            bottom: problemModeComboBox.top
+            bottomMargin: 5
+        }
+        color: "white"
+        verticalAlignment: Text.AlignVCenter
+    }
+
+    ComboBox {
+        id: problemModeComboBox
+        model: problemTypes
+        anchors {
             left: playNow.left
+            bottom: playNow.top
             bottomMargin: 15
         }
+        width: parent.width / 3
+        height: parent.height / 10
 
-        checked: true
-        onCheckedChanged: {
-            if ( checked )
-            {
-                rightToleft.checked = false
-                glc.setInputNormal( true )
-            }
-        }
-    }
-
-    Text {
-        id: leftToRightLabel
-        font.family: okpupfont.name
-        font.pixelSize: 18 * ( parent.height / 600 )
-        text: "Left to Right"
-        anchors {
-            left: leftToRight.left
-            verticalCenter: leftToRight.verticalCenter
-            leftMargin: 50
-        }
-        color: "white"
-        verticalAlignment: Text.AlignVCenter
-    }
-
-    RadioButton {
-        id: rightToLeft
-        anchors {
-            left: leftToRightLabel.right
-            verticalCenter: leftToRight.verticalCenter
-            leftMargin: 20
-        }
-        onCheckedChanged: {
-            if ( checked )
-            {
-                leftToRight.checked = false
-                glc.setInputNormal( false )
-            }
-        }
-    }
-
-    Text {
-        id: rightToLeftLabel
-        font.family: okpupfont.name
-        font.pixelSize: 18 * ( parent.height / 600 )
-        text: "Right to Left"
-        anchors {
-            left: rightToLeft.left
-            verticalCenter: leftToRight.verticalCenter
-            leftMargin: 50
-        }
-        color: "white"
-        verticalAlignment: Text.AlignVCenter
     }
 
     StylizedButton {
@@ -93,6 +70,7 @@ Item {
         width: parent.width / 3
         height: parent.height / 8
         onClicked: {
+            glc.setProblemType( problemModeComboBox.currentIndex )
             glc.useCurrentSeed();
             glc.initList()
             gameSecurity.setSecurityBit( false )
@@ -113,6 +91,7 @@ Item {
         width: parent.width / 3
         height: parent.height / 8
         onClicked: {
+            glc.setProblemType( problemModeComboBox.currentIndex )
             mainLoader.source = "PlaySeedInputScreen.qml"
         }
     }

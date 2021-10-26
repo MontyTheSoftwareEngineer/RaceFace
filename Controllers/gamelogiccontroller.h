@@ -22,6 +22,7 @@ public:
     Q_INVOKABLE bool checkAnswer( const QString & answer );
     Q_INVOKABLE void nextQuestion();
     Q_INVOKABLE QString getQuestionList();
+    Q_INVOKABLE void setProblemType( const int & index );
 
     bool inputNormal() { return m_inputNormal; }
 
@@ -45,6 +46,7 @@ private:
     QString m_problemDisplay;
     QList< QPair< int, int > > m_gameProblemList;
     int m_currentProblemCount;
+    int m_problemType;
 };
 
 #endif // GAMELOGICCONTROLLER_H
