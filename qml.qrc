@@ -10,6 +10,6 @@
         <file>ui/GameScreen.qml</file>
         <file>ui/ResultsScreen.qml</file>
         <file>ui/assets/pause.png</file>
-        <file>ui/pause.png</file>
+        <file>ui/assets/refresh.png</file>
     </qresource>
 </RCC>

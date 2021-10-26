@@ -144,6 +144,27 @@ Item {
         }
     }
 
+    StylizedButton {
+        id: restartButton
+        anchors {
+            top: problemDisplay.bottom
+            topMargin: 40
+            right: pauseButton.left
+            rightMargin: 20
+        }
+
+        buttonImageSource: "qrc:/ui/assets/refresh.png"
+        hasImage: true
+        width: height
+        radius: height / 2
+        height: parent.height / 10
+        onClicked: {
+            glc.useCurrentSeed()
+            glc.initList()
+            gameTimer.clearTimer()
+        }
+    }
+
     Rectangle{
         id: pauseScreen
         anchors.fill: parent
