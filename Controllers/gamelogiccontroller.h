@@ -21,6 +21,7 @@ public:
     QString problemDisplay();
     Q_INVOKABLE bool checkAnswer( const QString & answer );
     Q_INVOKABLE void nextQuestion();
+    Q_INVOKABLE QString getQuestionList();
 
     bool inputNormal() { return m_inputNormal; }
 

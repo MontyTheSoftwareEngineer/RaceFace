@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import "common"
+import QtQuick.Controls 2.2
 
 Item {
     anchors.fill: parent
@@ -48,7 +49,7 @@ Item {
         font.family: okpupfont.name
         font.pixelSize: 40 * ( parent.height / 600)
         color: "white"
-        text: gameTimer.gameTimeDisplay
+        text: "Time: " + gameTimer.gameTimeDisplay
     }
 
     Text {
@@ -93,5 +94,50 @@ Item {
             gameTimer.clearTimer()
             mainLoader.source = "HomeScreen.qml"
         }
+    }
+
+    CheckBox {
+        id: showProblemsRadioButton
+        anchors {
+            left: parent.left
+            top: parent.top
+            margins: 15
+        }
+        onCheckedChanged: {
+            if ( checked )
+            {
+
+            }
+        }
+        checked: false
+    }
+
+    Text {
+        id: showProblemsLabel
+        font.family: okpupfont.name
+        font.pixelSize: 18 * ( parent.height / 600 )
+        text: "Show Questions"
+        anchors {
+            left: showProblemsRadioButton.left
+            verticalCenter: showProblemsRadioButton.verticalCenter
+            leftMargin: 50
+        }
+        color: "white"
+        verticalAlignment: Text.AlignVCenter
+    }
+
+    Text {
+        id: problemsList
+        visible: showProblemsRadioButton.checked
+        font.family: okpupfont.name
+        font.pixelSize: 18 * ( parent.height / 600 )
+        text: glc.getQuestionList()
+        anchors {
+            left: showProblemsLabel.left
+            top: showProblemsLabel.bottom
+            topMargin: 10
+        }
+        color: "white"
+        verticalAlignment: Text.AlignVCenter
     }
 }

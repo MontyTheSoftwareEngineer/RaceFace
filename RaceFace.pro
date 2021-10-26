@@ -1,5 +1,5 @@
 QT += quick quickcontrols2 qml \
-    widgets
+    widgets svg
 
 CONFIG += c++11 qtquickcompiler
 QTPLUGIN += qtvirtualkeyboardplugin

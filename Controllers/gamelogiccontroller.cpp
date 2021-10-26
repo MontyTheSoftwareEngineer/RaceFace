@@ -77,6 +77,18 @@ void GameLogicController::nextQuestion()
     }
 }
 
+QString GameLogicController::getQuestionList()
+{
+    QString ret;
+    for ( int i = 0; i < m_gameProblemList.count( ) - 1; i++)
+    {
+        QPair<int,int> current = m_gameProblemList.at(i);
+        ret.append( QString::number( current.first) + " X " + QString::number( current.second ) + " = " + QString::number( current.first * current.second) + "\n" );
+    }
+
+    return ret;
+}
+
 void GameLogicController::initList()
 {
     m_gameProblemList.clear();
