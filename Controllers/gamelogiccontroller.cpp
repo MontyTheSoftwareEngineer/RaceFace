@@ -4,6 +4,7 @@
 
 GameLogicController::GameLogicController(QObject *parent)
     : QObject(parent)
+    , m_inputNormal( true )
     , m_seed( QString() )
     , m_problemDisplay( QString() )
     , m_currentProblemCount( 0 )
@@ -46,6 +47,15 @@ void GameLogicController::setProgressDisplay(const QString & text )
     }
 }
 
+void GameLogicController::setInputNormal(const bool &val)
+{
+    if ( m_inputNormal != val )
+    {
+        m_inputNormal = val;
+        emit inputNormalChanged();
+    }
+}
+
 bool GameLogicController::checkAnswer(const QString &answer)
 {
     int intAns = answer.toInt();
@@ -74,13 +84,35 @@ void GameLogicController::initList()
 
     std::default_random_engine generator;
     generator.seed( m_seed.toUInt() );
-    std::uniform_int_distribution<int> distribution(10,99);
+    std::uniform_int_distribution<int> twoDigit(10,99);
+    std::uniform_int_distribution<int> threeDigit(100,999);
+    std::uniform_int_distribution<int> typeSel(1,3);
 
     for ( int i = 0; i < 7; i++ )
     {
         QPair< int, int > newElement;
-        newElement.first = distribution(generator);
-        newElement.second = distribution(generator);
+
+        int mode = typeSel( generator );
+        switch( mode )
+        {
+        //two digits
+        case 1: {
+            newElement.first = twoDigit( generator );
+            newElement.second = twoDigit( generator );
+            break;
+        }
+        //mixed
+        case 2: {
+            newElement.first = threeDigit( generator );
+            newElement.second = twoDigit( generator );
+            break;
+        }
+        default: {
+            newElement.first = threeDigit( generator );
+            newElement.second = twoDigit( generator );
+            break;
+        }
+        }
 
         m_gameProblemList.append( newElement );
     }

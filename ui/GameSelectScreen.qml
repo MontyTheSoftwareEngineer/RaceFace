@@ -1,5 +1,7 @@
 import QtQuick 2.0
 import "common"
+import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.2
 
 Item {
     anchors.fill: parent
@@ -21,6 +23,68 @@ Item {
         font.pixelSize: 60 * ( parent.height / 600)
         color: "white"
         text: qsTr("Select Mode")
+    }
+
+    RadioButton {
+        id: leftToRight
+        anchors {
+            bottom: playNow.top
+            left: playNow.left
+            bottomMargin: 15
+        }
+
+        checked: true
+        onCheckedChanged: {
+            if ( checked )
+            {
+                rightToleft.checked = false
+                glc.setInputNormal( true )
+            }
+        }
+    }
+
+    Text {
+        id: leftToRightLabel
+        font.family: okpupfont.name
+        font.pixelSize: 18 * ( parent.height / 600 )
+        text: "Left to Right"
+        anchors {
+            left: leftToRight.left
+            verticalCenter: leftToRight.verticalCenter
+            leftMargin: 50
+        }
+        color: "white"
+        verticalAlignment: Text.AlignVCenter
+    }
+
+    RadioButton {
+        id: rightToLeft
+        anchors {
+            left: leftToRightLabel.right
+            verticalCenter: leftToRight.verticalCenter
+            leftMargin: 20
+        }
+        onCheckedChanged: {
+            if ( checked )
+            {
+                leftToRight.checked = false
+                glc.setInputNormal( false )
+            }
+        }
+    }
+
+    Text {
+        id: rightToLeftLabel
+        font.family: okpupfont.name
+        font.pixelSize: 18 * ( parent.height / 600 )
+        text: "Right to Left"
+        anchors {
+            left: rightToLeft.left
+            verticalCenter: leftToRight.verticalCenter
+            leftMargin: 50
+        }
+        color: "white"
+        verticalAlignment: Text.AlignVCenter
     }
 
     StylizedButton {

@@ -6,6 +6,7 @@ import OKPUP 1.0
 
 Item {
     anchors.fill: parent
+    property string answerInput: ""
 
     function checkAnswer() {
         if( glc.checkAnswer( answerInputTextField.text ) ) {
@@ -109,6 +110,21 @@ Item {
         }
         font.pixelSize: 32 * ( parent.height / 600 )
         font.family: okpupfont.name
+//        Keys.onPressed: {
+//            console.log( event.key )
+//            if ( glc.inputNormal )
+//                return;
+//            if ( (event.key >= 48) && ( event.key <= 39 ) ) {
+//                if ( answerInput == "" ) {
+//                    answerInput = event.text
+//                }
+//                else {
+//                    answerInput = event.text + answerInput
+//                    answerInputTextField.text = answerInput
+//                    event.accepted = true
+//                }
+//            }
+//        }
     }
 
     StylizedButton {
@@ -163,6 +179,7 @@ Item {
         radius: height / 2
         height: parent.height / 10
         onClicked: {
+            answerInputTextField.text = ""
             gameSecurity.setPauseBit( false )
             glc.useCurrentSeed()
             glc.initList()
