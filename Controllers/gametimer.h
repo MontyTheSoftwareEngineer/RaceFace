@@ -17,12 +17,15 @@ public:
     Q_INVOKABLE void stopTimer();
     Q_INVOKABLE void clearTimer();
 
+    Q_INVOKABLE void pauseGame();
+
 public slots:
     void setGameTimeDisplay( const QString & time );
     void gameTimerTick();
 
 signals:
     void gameTimeDisplayChanged();
+    void gamePaused();
 
 private:
     QString m_gameTimeDisplay;

@@ -38,6 +38,12 @@ void GameTimer::clearTimer()
     setGameTimeDisplay("00:00:00.0");
 }
 
+void GameTimer::pauseGame()
+{
+    m_gameTimer->stop();
+    emit gamePaused();
+}
+
 void GameTimer::setGameTimeDisplay(const QString &time)
 {
     if ( m_gameTimeDisplay != time )

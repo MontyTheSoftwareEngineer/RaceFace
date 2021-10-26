@@ -9,5 +9,7 @@
         <file>ui/assets/Highman.ttf</file>
         <file>ui/GameScreen.qml</file>
         <file>ui/ResultsScreen.qml</file>
+        <file>ui/assets/pause.png</file>
+        <file>ui/pause.png</file>
     </qresource>
 </RCC>

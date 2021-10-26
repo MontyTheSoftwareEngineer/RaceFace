@@ -9,6 +9,12 @@ Window {
     height: 600
     title: qsTr("RaceFace")
 
+    onActiveChanged: {
+        if (!active) {
+            gameTimer.pauseGame()
+        }
+    }
+
     FontLoader { id: customFont; source: "qrc:/ui/assets/MyOlivin-Regular.ttf" }
     FontLoader { id: okpupfont; source: "qrc:/ui/assets/Highman.ttf" }
 
@@ -19,10 +25,12 @@ Window {
 
     GameTimer {
         id: gameTimer
+
     }
 
     GameSecurity {
         id: gameSecurity
+
     }
 
     Rectangle {

@@ -32,6 +32,11 @@ Item {
         }
     }
 
+    Connections {
+        target: gameTimer
+        onGamePaused: pauseScreen.visible = true
+    }
+
     Timer {
         id: wrongTimer
         interval: 1000
@@ -116,6 +121,65 @@ Item {
         height: parent.height / 10
         onClicked: {
             checkAnswer()
+        }
+    }
+
+    StylizedButton {
+        id: pauseButton
+        anchors {
+            top: problemDisplay.bottom
+            topMargin: 40
+            right: answerInputTextField.left
+            rightMargin: 20
+        }
+
+        buttonImageSource: "qrc:/ui/assets/pause.png"
+        hasImage: true
+        width: height
+        radius: height / 2
+        height: parent.height / 10
+        onClicked: {
+            gameTimer.stopTimer()
+            pauseScreen.visible = true
+        }
+    }
+
+    Rectangle{
+        id: pauseScreen
+        anchors.fill: parent
+        color: "#707070"
+        visible: false
+    }
+
+    Text {
+        id: pauseText
+        visible: pauseScreen.visible
+        anchors {
+            top: parent.top
+            horizontalCenter: parent.horizontalCenter
+            topMargin: 30
+        }
+        font.family: okpupfont.name
+        font.pixelSize: 60 * ( parent.height / 600)
+        color: "white"
+        text: qsTr("Game Paused")
+    }
+
+    MouseArea {
+        anchors.fill: pauseScreen
+        enabled: pauseScreen.visible
+    }
+
+    StylizedButton {
+        id: resumeButton
+        anchors.centerIn: parent
+        visible: pauseScreen.visible
+        buttonText: "Resume"
+        width: parent.width / 3
+        height: parent.height / 8
+        onClicked: {
+            gameTimer.startTimer();
+            pauseScreen.visible = false
         }
     }
 
