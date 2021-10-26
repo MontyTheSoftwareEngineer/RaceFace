@@ -64,6 +64,19 @@ Item {
         text: "New Seed: " + ( gameSecurity.securityBit ? "False" : "True" )
     }
 
+    Text {
+        id: pauseCheck
+        anchors {
+            top: securityCheck.bottom
+            horizontalCenter: parent.horizontalCenter
+            topMargin: 15
+        }
+        font.family: okpupfont.name
+        font.pixelSize: 40 * ( parent.height / 600)
+        color: "white"
+        text: "No Pause: " + ( gameSecurity.pauseBit ? "False" : "True" )
+    }
+
 
     StylizedButton {
         id: newGameButton

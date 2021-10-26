@@ -1,8 +1,10 @@
 #include "gamesecuritycontroller.h"
+#include <QDebug>
 
 GameSecurityController::GameSecurityController(QObject *parent)
     : QObject(parent)
     , m_securityBit( false )
+    , m_pauseBit( false )
 {
     m_settings = new QSettings( "OKPUP", "QuickMaths" );
 }
@@ -28,5 +30,14 @@ void GameSecurityController::setSecurityBit(const bool &bit)
     {
         m_securityBit = bit;
         emit securityBitChanged();
+    }
+}
+
+void GameSecurityController::setPauseBit(const bool &bit)
+{
+    if ( m_pauseBit != bit )
+    {
+        m_pauseBit = bit;
+        emit pauseBitChanged();
     }
 }

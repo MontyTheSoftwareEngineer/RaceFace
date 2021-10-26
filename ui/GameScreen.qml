@@ -20,6 +20,7 @@ Item {
     }
 
     Component.onCompleted: {
+        gameSecurity.setPauseBit( false )
         gameTimer.startTimer()
         answerInputTextField.forceActiveFocus()
     }
@@ -34,7 +35,10 @@ Item {
 
     Connections {
         target: gameTimer
-        onGamePaused: pauseScreen.visible = true
+        onGamePaused: {
+            gameSecurity.setPauseBit( true )
+            pauseScreen.visible = true
+        }
     }
 
     Timer {
@@ -159,8 +163,10 @@ Item {
         radius: height / 2
         height: parent.height / 10
         onClicked: {
+            gameSecurity.setPauseBit( false )
             glc.useCurrentSeed()
             glc.initList()
+            gameSecurity.addSeed( glc.gameSeed )
             gameTimer.clearTimer()
         }
     }
@@ -199,6 +205,7 @@ Item {
         width: parent.width / 3
         height: parent.height / 8
         onClicked: {
+            gameSecurity.setPauseBit( true );
             gameTimer.startTimer();
             pauseScreen.visible = false
         }
