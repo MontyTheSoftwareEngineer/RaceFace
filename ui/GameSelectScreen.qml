@@ -54,11 +54,12 @@ Item {
         id: problemModeComboBox
         model: problemTypes
         anchors {
-            left: playNow.left
+            horizontalCenter: parent.horizontalCenter
             bottom: playNow.top
             bottomMargin: 15
         }
-        width: parent.width / 3
+        font.family: okpupfont.name
+        width: parent.width / 1.5
         height: parent.height / 10
 
     }
@@ -67,7 +68,7 @@ Item {
         id: playNow
         anchors.centerIn: parent
         buttonText: "Play Now"
-        width: parent.width / 3
+        width: parent.width / 2
         height: parent.height / 8
         onClicked: {
             glc.setProblemType( problemModeComboBox.currentIndex )
@@ -88,7 +89,7 @@ Item {
         }
 
         buttonText: "Play Seed"
-        width: parent.width / 3
+        width: parent.width / 2
         height: parent.height / 8
         onClicked: {
             glc.setProblemType( problemModeComboBox.currentIndex )
@@ -105,7 +106,7 @@ Item {
         }
 
         buttonText: "Back"
-        width: parent.width / 3
+        width: parent.width / 2
         height: parent.height / 8
         onClicked: {
             mainLoader.source = "HomeScreen.qml"

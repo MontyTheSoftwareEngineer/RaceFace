@@ -95,6 +95,22 @@ void GameLogicController::setProblemType(const int &index)
     m_problemType = index;
 }
 
+QString GameLogicController::getModeType()
+{
+    switch( m_problemType ) {
+    case 0:
+        return "Random";
+    case 1:
+        return "2 Digit Only";
+    case 2:
+        return "3 Digit Only";
+    case 3:
+        return "3 Digit * 2 Digit";
+    }
+
+    return "";
+}
+
 void GameLogicController::initList()
 {
     m_gameProblemList.clear();
@@ -126,7 +142,7 @@ void GameLogicController::initList()
         //mixed
         case 2: {
             newElement.first = threeDigit( generator );
-            newElement.second = twoDigit( generator );
+            newElement.second = threeDigit( generator );
             break;
         }
         case 3: {

@@ -23,7 +23,7 @@ Item {
     Component.onCompleted: {
         gameSecurity.setPauseBit( false )
         gameTimer.startTimer()
-        answerInputTextField.forceActiveFocus()
+        //answerInputTextField.forceActiveFocus()
     }
 
     Connections {
@@ -157,34 +157,10 @@ Item {
         hasImage: true
         width: height
         radius: height / 2
-        height: parent.height / 10
+        height: parent.height / 14
         onClicked: {
             gameTimer.stopTimer()
             pauseScreen.visible = true
-        }
-    }
-
-    StylizedButton {
-        id: restartButton
-        anchors {
-            top: problemDisplay.bottom
-            topMargin: 40
-            right: pauseButton.left
-            rightMargin: 20
-        }
-
-        buttonImageSource: "qrc:/ui/assets/refresh.png"
-        hasImage: true
-        width: height
-        radius: height / 2
-        height: parent.height / 10
-        onClicked: {
-            answerInputTextField.text = ""
-            gameSecurity.setPauseBit( false )
-            glc.useCurrentSeed()
-            glc.initList()
-            gameSecurity.addSeed( glc.gameSeed )
-            gameTimer.clearTimer()
         }
     }
 
@@ -219,7 +195,7 @@ Item {
         anchors.centerIn: parent
         visible: pauseScreen.visible
         buttonText: "Resume"
-        width: parent.width / 3
+        width: parent.width / 2
         height: parent.height / 8
         onClicked: {
             gameSecurity.setPauseBit( true );
@@ -229,7 +205,7 @@ Item {
     }
 
     StylizedButton {
-        id: mainMenuButton
+        id: newGameButton
         anchors {
             top: resumeButton.bottom
             topMargin: 20
@@ -237,12 +213,37 @@ Item {
         }
 
         visible: pauseScreen.visible
+        buttonText: "New Game"
+        width: parent.width / 2
+        height: parent.height / 8
+        onClicked: {
+            answerInputTextField.text = ""
+            gameSecurity.setPauseBit( false )
+            glc.useCurrentSeed()
+            glc.initList()
+            gameSecurity.addSeed( glc.gameSeed )
+            gameTimer.clearTimer()
+            gameTimer.startTimer()
+            pauseScreen.visible = false
+        }
+    }
+
+    StylizedButton {
+        id: mainMenuButton
+        anchors {
+            top: newGameButton.bottom
+            topMargin: 20
+            horizontalCenter: parent.horizontalCenter
+        }
+
+        visible: pauseScreen.visible
         buttonText: "Main Menu"
-        width: parent.width / 3
+        width: parent.width / 2
         height: parent.height / 8
         onClicked: {
             mainLoader.source = "HomeScreen.qml"
         }
     }
+
 
 }

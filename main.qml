@@ -1,6 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
-import QtQuick.VirtualKeyboard 2.1
+//QtQuick.VirtualKeyboard 2.1
 import OKPUP 1.0
 
 Window {
@@ -58,13 +58,13 @@ Window {
         text: "OKPUP"
     }
 
-    InputPanel {
-        id: virtualKeyboard
-        height: 300 * ( parent.height / 600 )
-        visible: active
-        anchors.left: mainLoader.left
-        anchors.right: mainLoader.right
-        anchors.bottom: mainLoader.bottom
-        externalLanguageSwitchEnabled: true
-    }
+//    InputPanel {
+//        id: virtualKeyboard
+//        height: 300 * ( parent.height / 600 )
+//        visible: active
+//        anchors.left: mainLoader.left
+//        anchors.right: mainLoader.right
+//        anchors.bottom: mainLoader.bottom
+//        externalLanguageSwitchEnabled: true
+//    }
 }

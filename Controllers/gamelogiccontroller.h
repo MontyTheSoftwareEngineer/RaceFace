@@ -23,6 +23,7 @@ public:
     Q_INVOKABLE void nextQuestion();
     Q_INVOKABLE QString getQuestionList();
     Q_INVOKABLE void setProblemType( const int & index );
+    Q_INVOKABLE QString getModeType();
 
     bool inputNormal() { return m_inputNormal; }
 

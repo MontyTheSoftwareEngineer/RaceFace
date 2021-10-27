@@ -26,7 +26,7 @@ Item {
         id: playButton
         anchors.centerIn: parent
         buttonText: "Play"
-        width: parent.width / 3
+        width: parent.width / 2
         height: parent.height / 8
         onClicked: {
             mainLoader.source = "GameSelectScreen.qml"
@@ -42,7 +42,7 @@ Item {
         }
 
         buttonText: "Quit"
-        width: parent.width / 3
+        width: parent.width / 2
         height: parent.height / 8
         onClicked: {
             Qt.quit()
