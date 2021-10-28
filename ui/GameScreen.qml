@@ -23,7 +23,7 @@ Item {
     Component.onCompleted: {
         gameSecurity.setPauseBit( false )
         gameTimer.startTimer()
-        //answerInputTextField.forceActiveFocus()
+        answerInputTextField.forceActiveFocus()
     }
 
     Connections {
@@ -110,6 +110,14 @@ Item {
         }
         font.pixelSize: 32 * ( parent.height / 600 )
         font.family: okpupfont.name
+        onTextChanged: {
+            if( glc.checkAnswer( answerInputTextField.text ) ) {
+                problemDisplay.color = "white"
+                answerInputTextField.text = ""
+                glc.nextQuestion()
+            }
+        }
+
 //        Keys.onPressed: {
 //            console.log( event.key )
 //            if ( glc.inputNormal )
